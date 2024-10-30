@@ -32,15 +32,17 @@ public class Deadlock {
 
                     synchronized (lock1) {
                         main.countNum1++;
-                    }
-                    try {
-                        int tmp = main.rand.nextInt(5) + 1;
-                        Thread.sleep(tmp);
-                    } catch (Exception e) {
-                        e.printStackTrace();
-                    }
-                    synchronized (lock2) {
-                        main.countNum2++;
+
+                        try {
+                            int tmp = main.rand.nextInt(5) + 1;
+                            Thread.sleep(tmp);
+                        } catch (Exception e) {
+                            e.printStackTrace();
+                        }
+
+                        synchronized (lock2) {
+                            main.countNum2++;
+                        }
                     }
                     countDownLatch.countDown();
                 }
@@ -54,15 +56,16 @@ public class Deadlock {
 
                     synchronized (lock2) {
                         main.countNum1++;
-                    }
-                    try {
-                        int tmp = main.rand.nextInt(5) + 1;
-                        Thread.sleep(tmp);
-                    } catch (Exception e) {
-                        e.printStackTrace();
-                    }
-                    synchronized (lock1) {
-                        main.countNum2++;
+
+                        try {
+                            int tmp = main.rand.nextInt(5) + 1;
+                            Thread.sleep(tmp);
+                        } catch (Exception e) {
+                            e.printStackTrace();
+                        }
+                        synchronized (lock1) {
+                            main.countNum2++;
+                        }
                     }
                     countDownLatch.countDown();
                 }
