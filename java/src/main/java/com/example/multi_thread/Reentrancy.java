@@ -50,6 +50,9 @@ public class Reentrancy {
         }
     }
 
+    // 再入可能という言葉は、マルチスレッドの脈絡ではなく
+    // 割り込みハンドラの考えが元になっており、複数のコンテキストから
+    // 正しくデータが更新されないという意味で使われることもある
     public void recursiveFunc(int count) {
         synchronized (lock) {
             System.out.println("recursive");
